@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { SharePointWebService } from './interfaces/spws.interface';
@@ -5,7 +6,8 @@ import { List } from './models/list.model';
 import { Site } from './models/site.model';
 import { View } from './models/view.model';
 
-export class SharePointMockup implements SharePointWebService{
+@Injectable({providedIn: 'root'})
+export class SharePointMockupSevice implements SharePointWebService{
     getSitesForUser(): Observable<Site[]> {
         return of([
             new Site('1', 'one'),
