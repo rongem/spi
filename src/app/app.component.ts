@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { List } from './lib/models/list.model';
 
 @Component({
   selector: 'spi-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'spi';
+  title = 'Spi';
+
+  listSelected(event: List) {
+    console.log(event);
+  }
 }

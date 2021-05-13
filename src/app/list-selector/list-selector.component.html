@@ -1,0 +1,16 @@
+<div class="card-container">
+    <div class="card">
+        <div>Sitenamen eingeben:</div>
+        <input type="text" [(ngModel)]="siteName" required (keydown.enter)="getLists()" (keydown.tab)="getLists()" (focusout)="getLists()">
+    </div>
+    <div class="card">
+        <div>Liste ausw&auml;hlen:</div>
+        <select [(ngModel)]="listEntry" [disabled]="!siteFound">
+            <option *ngFor="let entry of lists" [value]=entry.id>{{entry.name}}</option>
+        </select>
+    </div>
+    <div class="card">
+        <button type="button" [disabled]="!listEntry || outputPresent" (click)="submit()">Ausw&auml;len</button>
+        <button type="button" [disabled]="!outputPresent" (click)="unselect()">Auswahl l&ouml;schen</button>
+    </div>
+</div>

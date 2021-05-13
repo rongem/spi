@@ -1,5 +1,5 @@
 import { List } from './list.model';
 
 export class View{
-    constructor(public id: string, name: string, list: List) {}
+    constructor(public id: string, public name: string, public list: List) {}
 }

@@ -1,3 +1,3 @@
 export class List{
-    constructor(public id: string, name: string, site: string) {}
+    constructor(public id: string, public name: string, public site: string) {}
 }
