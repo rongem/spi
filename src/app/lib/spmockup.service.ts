@@ -3,27 +3,26 @@ import { Observable, of } from 'rxjs';
 
 import { SharePointWebService } from './interfaces/spws.interface';
 import { List } from './models/list.model';
-import { Site } from './models/site.model';
 import { View } from './models/view.model';
 
 @Injectable({providedIn: 'root'})
 export class SharePointMockupSevice implements SharePointWebService{
-    getSitesForUser(): Observable<Site[]> {
+    getSitesForUser(): Observable<string[]> {
         return of([
-            new Site('1', 'one'),
-            new Site('2', 'two'),
+            'site-one',
+            'site-two',
         ]);
     }
-    getListsForSite(site: Site): Observable<List[]> {
+    getListsForSite(site: string): Observable<List[]> {
         return of([
-            new List('1', 'one'),
-            new List('2', 'two'),
+            new List('1', 'one', site),
+            new List('2', 'two', site),
         ]);
     }
     getViewsForList(list: List): Observable<View[]> {
         return of([
-            new View('1', 'one'),
-            new View('2', 'two'),
+            new View('1', 'one', list),
+            new View('2', 'two', list),
         ]);
     }
     getListContent(list: List): Observable<Map<string, string>[]> {
@@ -39,7 +38,7 @@ export class SharePointMockupSevice implements SharePointWebService{
         map2.set('c', 'six');
         return of([map1, map2]);
     }
-    getViewContent(list: List, view: View): Observable<Map<string, string>[]> {
+    getViewContent(view: View): Observable<Map<string, string>[]> {
         const map1 = new Map<string, string>();
         map1.set('id', '1');
         map1.set('a', 'one');
