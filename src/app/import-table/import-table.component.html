@@ -5,7 +5,10 @@
         </th>
     </tr>
     <tr>
-        <td *ngFor="let column of columnsWithoutId; let i=index" contenteditable="true" (paste)="onPaste(i, $event)">
+        <td *ngFor="let column of columnsWithoutId; let i=index"
+            (click)="setPasteIndex(-1, i, $event)"
+            (paste)="onPaste(i, $event)"
+            [ngClass]="{selectable: selectedLine !== -1 || selectedCol !== i, highlighted: selectedLine === -1 && selectedCol === i}">
             &nbsp;
         </td>
     </tr>

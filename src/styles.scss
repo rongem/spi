@@ -1,3 +1,7 @@
+$main-blue: #1976d2;
+$light-blue: lighten($main-blue, 45%);
+$dark-blue: darken($main-blue, 20%);
+
   h1,
   h2,
   h3,
@@ -22,7 +26,7 @@
   }
 
   th {
-    border-bottom: 0.5px solid #1976d2;
+    border-bottom: 0.5px solid $main-blue;
     padding: 0.5rem 1rem;
   }
   td {
@@ -31,7 +35,7 @@
   }
   td,
   th {
-    outline: 0.5px dotted #1976d2;
+    outline: 0.5px dotted $main-blue;
   }
 
   .spacer {
@@ -46,7 +50,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #1976d2;
+    background-color: $main-blue;
     color: white;
     font-weight: 600;
   }
@@ -96,9 +100,16 @@
         }
     
         &:focus {
-            background-color: #7bb5ee;
+            background-color: $light-blue;
         }
     }
+  }
+
+  .highlighted {
+    background-color: $light-blue;
+    border: 1px dashed $main-blue;
+    color: black;
+    font-weight: 600;
   }
 
   .card.selectable,
@@ -116,7 +127,7 @@
   }
 
   .card.highlight-card {
-    background-color: #1976d2;
+    background-color: $main-blue;
     color: white;
     font-weight: 600;
     border: none;
@@ -130,12 +141,12 @@
   a,
   a:visited,
   a:hover {
-    color: #1976d2;
+    color: $main-blue;
     text-decoration: none;
   }
 
   a:hover {
-    color: #125699;
+    color: $dark-blue;
   }
 
   .circle-link {
