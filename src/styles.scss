@@ -34,7 +34,7 @@
 
   .content {
     display: flex;
-    margin: 82px auto 32px;
+    margin: 62px auto 32px;
     padding: 0 16px;
     max-width: 960px;
     flex-direction: column;
@@ -52,9 +52,9 @@
     border-radius: 4px;
     border: 1px solid #eee;
     background-color: #fafafa;
-    height: 40px;
+    height: 25px;
     min-width: 200px;
-    margin: 0 8px 16px;
+    margin: 0 8px 0px;
     padding: 16px;
     display: flex;
     flex-direction: row;
@@ -70,8 +70,11 @@
   input,
   select,
   button {
-    transition: all 0.2s ease-in-out;
     margin: 0 0.5rem;
+  }
+
+  .selectable {
+    transition: all 0.2s ease-in-out;
 
     &:not(:disabled) {
         &:not(:focus):hover {
@@ -83,6 +86,11 @@
             background-color: #7bb5ee;
         }
     }
+  }
+
+  .card.selectable,
+  button.selectable {
+    cursor: pointer;
   }
 
   .card-container .card:not(:last-child) {

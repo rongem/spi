@@ -30,11 +30,11 @@ export interface SharePointWebService {
     // als String enthalten.
     // Rückgabe des erzeugten Eintrags als Map, so dass ein Vergleich möglich ist und Abweichungen erkannt werden.
     // Sollte eine TransferException auslösen, wenn das Update fehlgeschlagen ist.
-    createListEntry(entry: Map<string, string>): Observable<Map<string, string>>;
+    createListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>>;
 
     // Aktualisiert einen Eintrag in der einer App-Liste. Die Feldnamen sind dabei als key in der Map gegeben, der zugehörige Wert
     // als String enthalten.
     // Rückgabe der aktualisierten Map, so dass ein Vergleich möglich ist und Abweichungen erkannt werden.
     // Sollte eine TransferException auslösen, wenn das Update fehlgeschlagen ist.
-    updateListEntry(entry: Map<string, string>): Observable<Map<string, string>>;
+    updateListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>>;
 }

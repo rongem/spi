@@ -6,11 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './lib/auth.interceptor';
 import { ListSelectorComponent } from './list-selector/list-selector.component';
+import { ViewSelectorComponent } from './view-selector/view-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListSelectorComponent
+    ListSelectorComponent,
+    ViewSelectorComponent
   ],
   imports: [
     BrowserModule,

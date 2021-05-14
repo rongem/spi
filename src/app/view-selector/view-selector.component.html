@@ -1,0 +1,4 @@
+<div class="card-container">
+    <div class="card card-small selectable" [ngClass]="{'highlight-card': !selectedView}">(Ohne)</div>
+    <div class="card card-small selectable" [ngClass]="{'highlight-card': selectedView?.id === view.id}" *ngFor="let view of availableViews">{{view.name}}</div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FrontendService } from './lib/frontend.service';
 import { List } from './lib/models/list.model';
 
 @Component({
@@ -9,7 +10,14 @@ import { List } from './lib/models/list.model';
 export class AppComponent {
   title = 'Spi';
 
-  listSelected(event: List) {
-    console.log(event);
+  constructor(private fes: FrontendService) {}
+
+  get selectedList() {
+    return this.fes.selectedList;
   }
+
+  unselect() {
+    this.fes.selectedList.next(undefined);
+  }
+
 }

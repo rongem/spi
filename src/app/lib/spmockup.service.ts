@@ -62,10 +62,10 @@ export class SharePointMockupSevice implements SharePointWebService{
         map2.set('third', 'six');
         return of([map1, map2]);
     }
-   createListEntry(entry: Map<string, string>): Observable<Map<string, string>> {
+   createListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>> {
         return of(entry);
     }
-    updateListEntry(entry: Map<string, string>): Observable<Map<string, string>> {
+    updateListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>> {
         return of(entry);
     }
 }

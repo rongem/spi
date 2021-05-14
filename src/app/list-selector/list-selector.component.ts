@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
-import { FrontendService } from '../lib/frontend.service';
 
+import { FrontendService } from '../lib/frontend.service';
 import { List } from '../lib/models/list.model';
-import { SharePointMockupSevice } from '../lib/spmockup.service';
 
 @Component({
   selector: 'spi-list-selector',
@@ -16,18 +15,21 @@ export class ListSelectorComponent implements OnInit {
   listEntry?: string;
   lists: List[] = [];
   siteFound = false;
-  outputPresent = false;
   private internalSiteName = '';
-  constructor(private spMockupService: SharePointMockupSevice, private fes: FrontendService) { }
+  constructor(private fes: FrontendService) { }
 
   ngOnInit(): void {
+  }
+
+  get outputPresent() {
+    return !!this.fes.selectedList.value
   }
 
   getLists() {
     if (this.siteName.length > 0) {
       this.internalSiteName = this.siteName.trim();
       this.siteName = this.internalSiteName;
-      this.spMockupService.getListsForSite(this.internalSiteName).pipe(
+      this.fes.getListsForSite(this.internalSiteName).pipe(
         take(1),
         catchError(() => {
           return of([]);
@@ -42,12 +44,5 @@ export class ListSelectorComponent implements OnInit {
 
   submit() {
     this.fes.selectedList.next(this.lists.find(l => l.id === this.listEntry))
-    this.outputPresent = true;
   }
-
-  unselect() {
-    this.fes.selectedList.next(undefined);
-    this.outputPresent = false;
-  }
-
 }

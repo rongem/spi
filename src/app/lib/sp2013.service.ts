@@ -22,10 +22,10 @@ export class SharePoint2013Service implements SharePointWebService {
     getViewContent(view: View): Observable<Map<string, string>[]> {
         throw new Error('Method not implemented.');
     }
-    createListEntry(entry: Map<string, string>): Observable<Map<string, string>> {
+    createListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>> {
         throw new Error('Method not implemented.');
     }
-    updateListEntry(entry: Map<string, string>): Observable<Map<string, string>> {
+    updateListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>> {
         throw new Error('Method not implemented.');
     }
 }
