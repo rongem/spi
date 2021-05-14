@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './lib/auth.interceptor';
 import { ListSelectorComponent } from './list-selector/list-selector.component';
 import { ViewSelectorComponent } from './view-selector/view-selector.component';
+import { ImportTableComponent } from './import-table/import-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListSelectorComponent,
-    ViewSelectorComponent
+    ViewSelectorComponent,
+    ImportTableComponent
   ],
   imports: [
     BrowserModule,

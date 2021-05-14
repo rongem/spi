@@ -9,7 +9,12 @@ import { View } from '../lib/models/view.model';
   styleUrls: ['./view-selector.component.scss']
 })
 export class ViewSelectorComponent implements OnInit, OnDestroy {
-  selectedView?: View;
+  get selectedView() {
+    return this.fes.selectedView.value;
+  };
+  set selectedView(value) {
+    this.fes.selectedView.next(value);
+  }
   availableViews: View[] = [];
   private subscription?: Subscription;
 

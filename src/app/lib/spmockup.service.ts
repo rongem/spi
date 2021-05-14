@@ -6,6 +6,7 @@ import { Column } from './models/column.model';
 import { List } from './models/list.model';
 import { View } from './models/view.model';
 
+// Mockup-Service, da ich ohne SharePoint das Frontend entwickeln muss
 @Injectable({providedIn: 'root'})
 export class SharePointMockupSevice implements SharePointWebService{
     getSitesForUser(): Observable<string[]> {

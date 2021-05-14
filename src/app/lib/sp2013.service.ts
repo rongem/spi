@@ -5,6 +5,7 @@ import { SharePointWebService } from './interfaces/spws.interface';
 import { List } from './models/list.model';
 import { View } from './models/view.model';
 
+// SharePoint-Konnektor für SharePoint Version 2013
 @Injectable({providedIn: 'root'})
 export class SharePoint2013Service implements SharePointWebService {
     getSitesForUser(): Observable<string[]> {

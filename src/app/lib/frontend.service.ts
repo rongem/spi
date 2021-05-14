@@ -10,11 +10,23 @@ export class FrontendService implements SharePointWebService {
     selectedList = new BehaviorSubject<List | undefined>(undefined);
     selectedView = new BehaviorSubject<View | undefined>(undefined);
 
+    // Gibt alle Spalten der gewählten Ansicht zurück, andernfalls alle Spalten der Liste
+    get columns() {
+        if (this.selectedView.value) {
+            return this.selectedView.value.columns;
+        } else {
+            return this.selectedList.value!.columns;
+        }
+    }
+
+    // Hier den Klassennamen hinter sps ändern, um einen echten SharePoint-Konnektor anzuschließen
     constructor(private sps: SharePointMockupSevice) {
         this.selectedList.subscribe(list => {
             this.selectedView.next(undefined);
         })
     }
+
+    // Kapselung der Methoden des SharePoint-Konnektors, um Änderungen nur an einer Stelle pflegen zu müssen
     getSitesForUser(): Observable<string[]> {
         return this.sps.getSitesForUser();
     }
