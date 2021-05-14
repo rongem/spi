@@ -1,7 +1,12 @@
 <table>
     <tr>
-        <td *ngFor="let column of columns">
+        <th *ngFor="let column of columnsWithoutId">
             {{column.displayName}}
+        </th>
+    </tr>
+    <tr>
+        <td *ngFor="let column of columnsWithoutId; let i=index" contenteditable="true" (paste)="onPaste(i, $event)">
+            &nbsp;
         </td>
     </tr>
 </table>

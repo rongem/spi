@@ -11,9 +11,17 @@ export class ImportTableComponent implements OnInit {
     return this.fes.columns;
   }
 
+  get columnsWithoutId() {
+    return this.columns.filter(c => c.internalName.toLowerCase() !== 'id');
+  }
+
   constructor(private fes: FrontendService) { }
 
   ngOnInit(): void {
+  }
+
+  onPaste(colIndex: number, event: ClipboardEvent) {
+    console.log(colIndex, event);
   }
 
 }

@@ -11,6 +11,29 @@
     margin: 0;
   }
 
+  hr {
+    width: 100%;
+  }
+
+  input,
+  select,
+  button {
+    margin: 0 0.5rem;
+  }
+
+  th {
+    border-bottom: 0.5px solid #1976d2;
+    padding: 0.5rem 1rem;
+  }
+  td {
+    cursor: pointer;
+    padding: 0.2rem;
+  }
+  td,
+  th {
+    outline: 0.5px dotted #1976d2;
+  }
+
   .spacer {
     flex: 1;
   }
@@ -63,16 +86,6 @@
     line-height: 24px;
   }
 
-  hr {
-      width: 100%;
-  }
-
-  input,
-  select,
-  button {
-    margin: 0 0.5rem;
-  }
-
   .selectable {
     transition: all 0.2s ease-in-out;
 
@@ -123,17 +136,6 @@
 
   a:hover {
     color: #125699;
-  }
-
-  .terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
   }
 
   .circle-link {
