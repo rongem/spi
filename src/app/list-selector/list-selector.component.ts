@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
+import { FrontendService } from '../lib/frontend.service';
 
 import { List } from '../lib/models/list.model';
 import { SharePointMockupSevice } from '../lib/spmockup.service';
@@ -11,14 +12,13 @@ import { SharePointMockupSevice } from '../lib/spmockup.service';
   styleUrls: ['./list-selector.component.scss']
 })
 export class ListSelectorComponent implements OnInit {
-  @Output() selectedList: EventEmitter<List> = new EventEmitter();
   siteName = '';
   listEntry?: string;
   lists: List[] = [];
   siteFound = false;
   outputPresent = false;
   private internalSiteName = '';
-  constructor(private spMockupService: SharePointMockupSevice) { }
+  constructor(private spMockupService: SharePointMockupSevice, private fes: FrontendService) { }
 
   ngOnInit(): void {
   }
@@ -41,12 +41,12 @@ export class ListSelectorComponent implements OnInit {
   }
 
   submit() {
-    this.selectedList.emit(this.lists.find(l => l.id === this.listEntry));
+    this.fes.selectedList.next(this.lists.find(l => l.id === this.listEntry))
     this.outputPresent = true;
   }
 
   unselect() {
-    this.selectedList.emit(undefined);
+    this.fes.selectedList.next(undefined);
     this.outputPresent = false;
   }
 
