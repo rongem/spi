@@ -6,8 +6,10 @@
     </tr>
     <tr>
         <td *ngFor="let column of columnsWithoutId; let i = index"
-            (click)="setPasteIndex(-1, i, $event)"
+            (focus)="setPasteIndex(-1, i, $event)"
+            (focusout)="setPasteIndex(-1, -1)"
             (paste)="onPaste(i, $event)"
+            tabindex="0"
             [ngClass]="{selectable: selectedLine !== -1 || selectedCol !== i, highlighted: selectedLine === -1 && selectedCol === i}">
             &nbsp;
         </td>

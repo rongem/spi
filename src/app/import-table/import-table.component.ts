@@ -46,7 +46,7 @@ export class ImportTableComponent implements OnInit {
     }
   }
 
-  setPasteIndex(line: number, col: number, event?: MouseEvent) {
+  setPasteIndex(line: number, col: number, event?: FocusEvent) {
     this.selectedLine = line;
     this.selectedCol = col;
     if (event) {
