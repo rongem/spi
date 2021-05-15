@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { ClipboardHelper } from '../lib/clipboard.helper';
 import { FrontendService } from '../lib/frontend.service';
 
 @Component({
@@ -33,7 +34,16 @@ export class ImportTableComponent implements OnInit {
   }
 
   onPaste(colIndex: number, event: ClipboardEvent) {
-    console.log(colIndex, event);
+    try {
+      if (event.clipboardData) {
+        const lines = ClipboardHelper.getTableContent(event.clipboardData);
+        console.log(lines);
+      } else {
+        console.log(event);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   setPasteIndex(line: number, col: number, event?: MouseEvent) {
