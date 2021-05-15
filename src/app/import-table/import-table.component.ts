@@ -8,8 +8,9 @@ import { FrontendService } from '../lib/frontend.service';
   styleUrls: ['./import-table.component.scss']
 })
 export class ImportTableComponent implements OnInit {
-  selectedLine = -1;
+  selectedRow = -1;
   selectedCol = -1;
+  insertedRows: string[][] = [];
   get columns() {
     return this.fes.columns;
   }
@@ -18,13 +19,11 @@ export class ImportTableComponent implements OnInit {
     return this.columns.filter(c => c.internalName.toLowerCase() !== 'id');
   }
 
-  @HostListener('document:click', ['$event'])
-  clickout(event: MouseEvent) {
-    if(this.eRef.nativeElement.contains(event.target)) {
-      this.setPasteIndex(-1, -1);
-    } else {
-      this.setPasteIndex(-1, -1);
-    }
+  @HostListener('document:click', ['$event']) clickOutside(event: MouseEvent) {
+    // If the user clicks outside a td element, the selection is canceled.
+    // Inside the td element the bubble is cancelled, so this function will never be called then
+    this.selectedRow = -1;
+    this.selectedCol = -1;
   }
 
 
@@ -33,25 +32,45 @@ export class ImportTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onPaste(colIndex: number, event: ClipboardEvent) {
-    try {
-      if (event.clipboardData) {
-        const lines = ClipboardHelper.getTableContent(event.clipboardData);
-        console.log(lines);
-      } else {
-        console.log(event);
+  onPaste(event: ClipboardEvent) {
+    if (event.target instanceof HTMLTableCellElement) {
+      const colIndex = event.target.cellIndex;
+      const rowIndex = (event.target.parentElement as HTMLTableRowElement).rowIndex;
+      try {
+        if (event.clipboardData) {
+          const lines = ClipboardHelper.getTableContent(event.clipboardData);
+          // if selection is not in the utter left column, add empty fields
+          // if array is larger than allowed, then cut it right
+          for (let i = 0; i < lines.length; i++) {
+            lines[i] = this.padLeftAndCutRight(lines[i], colIndex, this.columnsWithoutId.length);
+          }
+          this.insertedRows = lines;
+        } else {
+          console.log(event);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   }
 
-  setPasteIndex(line: number, col: number, event?: FocusEvent) {
-    this.selectedLine = line;
-    this.selectedCol = col;
-    if (event) {
-      event.cancelBubble = true;
+  setPasteIndex(event: FocusEvent) {
+    let colIndex = -1;
+    let rowIndex = -1;
+    if (event.type === 'focus' && event.target instanceof HTMLTableCellElement) {
+      colIndex = event.target.cellIndex;
+      rowIndex = (event.target.parentElement as HTMLTableRowElement).rowIndex;
     }
+    this.selectedCol = colIndex;
+    this.selectedRow = rowIndex;
+  }
+
+  cancelBubble(event: Event) {
+    event.cancelBubble = true;
+  }
+
+  padLeftAndCutRight(arr: string[], numberToFill: number, maxLength: number = arr.length, fill: string = '') {
+    return Array<string>(numberToFill).fill(fill).concat(arr).slice(0, maxLength);
   }
 
 }

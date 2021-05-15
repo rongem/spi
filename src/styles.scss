@@ -30,7 +30,6 @@ $dark-blue: darken($main-blue, 20%);
     padding: 0.5rem 1rem;
   }
   td {
-    cursor: pointer;
     padding: 0.2rem;
   }
   td,
@@ -91,6 +90,7 @@ $dark-blue: darken($main-blue, 20%);
   }
 
   .selectable {
+    cursor: pointer;
     transition: all 0.2s ease-in-out;
 
     &:not(:disabled) {

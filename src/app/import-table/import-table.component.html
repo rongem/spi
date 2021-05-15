@@ -4,13 +4,19 @@
             {{column.displayName}}
         </th>
     </tr>
-    <tr>
-        <td *ngFor="let column of columnsWithoutId; let i = index"
-            (focus)="setPasteIndex(-1, i, $event)"
-            (focusout)="setPasteIndex(-1, -1)"
-            (paste)="onPaste(i, $event)"
-            tabindex="0"
-            [ngClass]="{selectable: selectedLine !== -1 || selectedCol !== i, highlighted: selectedLine === -1 && selectedCol === i}">
+    <tr *ngFor="let row of insertedRows">
+        <td *ngFor="let cell of row">
+            {{cell}}
+        </td>
+    </tr>
+    <tr #row>
+        <td #cell *ngFor="let column of columnsWithoutId"
+            (focus)="setPasteIndex($event)"
+            (focusout)="setPasteIndex($event)"
+            (click)="cancelBubble($event)"
+            (paste)="onPaste($event)"
+            [tabindex]="row.rowIndex * columnsWithoutId.length + cell.cellIndex"
+            [ngClass]="{selectable: selectedRow !== row.rowIndex || selectedCol !== cell.cellIndex, highlighted: selectedRow === row.rowIndex && selectedCol === cell.cellIndex}">
             &nbsp;
         </td>
     </tr>
