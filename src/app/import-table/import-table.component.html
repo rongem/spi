@@ -4,9 +4,14 @@
             {{column.displayName}}
         </th>
     </tr>
-    <tr *ngFor="let row of insertedRows">
-        <td *ngFor="let cell of row">
-            {{cell}}
+    <tr *ngFor="let row of rows">
+        <td *ngFor="let cell of row.cells | keyvalue; let i = index">
+            <ng-container *ngIf="i === 0">
+                <span class="ok" *ngIf="row.success">&#10004;</span>
+                <span class="error" *ngIf="row.error">X</span>
+                <img src="assets/images/ajaxload.gif" *ngIf="row.working" />
+            </ng-container>
+            {{cell.value}}
         </td>
     </tr>
     <tr #row>

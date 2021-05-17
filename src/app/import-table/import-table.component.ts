@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ClipboardHelper } from '../lib/clipboard.helper';
 import { FrontendService } from '../lib/frontend.service';
+import { Row } from '../lib/models/row.model';
 
 @Component({
   selector: 'spi-import-table',
@@ -10,7 +11,7 @@ import { FrontendService } from '../lib/frontend.service';
 export class ImportTableComponent implements OnInit {
   selectedRow = -1;
   selectedCol = -1;
-  insertedRows: string[][] = [];
+  rows: Row[] = []
   get columns() {
     return this.fes.columns;
   }
@@ -44,7 +45,7 @@ export class ImportTableComponent implements OnInit {
           for (let i = 0; i < lines.length; i++) {
             lines[i] = this.padLeftAndCutRight(lines[i], colIndex, this.columnsWithoutId.length);
           }
-          this.insertedRows = lines;
+          this.importRows(lines);
         } else {
           console.log(event);
         }
@@ -63,6 +64,12 @@ export class ImportTableComponent implements OnInit {
     }
     this.selectedCol = colIndex;
     this.selectedRow = rowIndex;
+  }
+
+  importRows(lines: string[][]) {
+    lines.forEach(l => {
+      this.rows.push(new Row(new Map<string, string>(l.map((c, index) => [this.columnsWithoutId[index].internalName, c]))));
+    });
   }
 
   cancelBubble(event: Event) {

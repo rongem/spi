@@ -164,6 +164,22 @@ $dark-blue: darken($main-blue, 20%);
     transition: 1s ease-out;
   }
 
+  .ok {
+    background-color: #00bd00;
+  }
+
+  .error {
+    background-color: #ff0000;
+  }
+  
+  .ok,
+  .error {
+    color: white;
+    border-radius: 50%;
+    padding: 0 0.2rem;
+    margin: 0 0.2rem;
+  }
+
   .circle-link:hover {
     transform: translateY(-0.25rem);
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
