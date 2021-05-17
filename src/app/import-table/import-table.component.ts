@@ -20,14 +20,6 @@ export class ImportTableComponent implements OnInit {
     return this.columns.filter(c => c.internalName.toLowerCase() !== 'id');
   }
 
-  @HostListener('document:click', ['$event']) clickOutside(event: MouseEvent) {
-    // If the user clicks outside a td element, the selection is canceled.
-    // Inside the td element the bubble is cancelled, so this function will never be called then
-    this.selectedRow = -1;
-    this.selectedCol = -1;
-  }
-
-
   constructor(private fes: FrontendService, private eRef: ElementRef) { }
 
   ngOnInit(): void {
@@ -72,11 +64,7 @@ export class ImportTableComponent implements OnInit {
     });
   }
 
-  cancelBubble(event: Event) {
-    event.cancelBubble = true;
-  }
-
-  padLeftAndCutRight(arr: string[], numberToFill: number, maxLength: number = arr.length, fill: string = '') {
+  private padLeftAndCutRight(arr: string[], numberToFill: number, maxLength: number = arr.length, fill: string = '') {
     return Array<string>(numberToFill).fill(fill).concat(arr).slice(0, maxLength);
   }
 

@@ -18,7 +18,6 @@
         <td #cell *ngFor="let column of columnsWithoutId"
             (focus)="setPasteIndex($event)"
             (focusout)="setPasteIndex($event)"
-            (click)="cancelBubble($event)"
             (paste)="onPaste($event)"
             [tabindex]="row.rowIndex * columnsWithoutId.length + cell.cellIndex"
             [ngClass]="{selectable: selectedRow !== row.rowIndex || selectedCol !== cell.cellIndex, highlighted: selectedRow === row.rowIndex && selectedCol === cell.cellIndex}">
