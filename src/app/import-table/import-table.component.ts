@@ -64,7 +64,13 @@ export class ImportTableComponent implements OnInit {
     });
   }
 
+  // if array is smaller than desired size, fill it to the right
+  // if array is not supposed to start in the utter left cell, fill it from the left
+  // if resulting array ist greater than allowed, cut it on the right
   private padLeftAndCutRight(arr: string[], numberToFill: number, maxLength: number = arr.length, fill: string = '') {
+    if (arr.length + numberToFill < maxLength) {
+      arr = arr.concat(Array<string>(maxLength - arr.length - numberToFill).fill(fill));
+    }
     return Array<string>(numberToFill).fill(fill).concat(arr).slice(0, maxLength);
   }
 
