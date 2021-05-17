@@ -16,6 +16,13 @@
   </ng-container>
   <!-- Footer -->
   <footer>
+    <p *ngIf="error" class="error">
+      {{error.message}}
+    </p>
   </footer>
 
 </div>
+
+<ng-container *ngIf="appBusy">
+  <spi-busy>Arbeite...</spi-busy>
+</ng-container>

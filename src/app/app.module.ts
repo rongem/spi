@@ -8,13 +8,15 @@ import { AuthInterceptor } from './lib/auth.interceptor';
 import { ListSelectorComponent } from './list-selector/list-selector.component';
 import { ViewSelectorComponent } from './view-selector/view-selector.component';
 import { ImportTableComponent } from './import-table/import-table.component';
+import { BusyComponent } from './busy/busy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListSelectorComponent,
     ViewSelectorComponent,
-    ImportTableComponent
+    ImportTableComponent,
+    BusyComponent
   ],
   imports: [
     BrowserModule,

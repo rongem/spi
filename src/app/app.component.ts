@@ -16,6 +16,14 @@ export class AppComponent {
     return this.fes.selectedList;
   }
 
+  get appBusy() {
+    return this.fes.appBusy;
+  }
+
+  get error() {
+    return this.fes.error;
+  }
+
   unselect() {
     this.fes.selectedList.next(undefined);
   }
