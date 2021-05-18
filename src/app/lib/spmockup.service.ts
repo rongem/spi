@@ -37,10 +37,15 @@ export class SharePointMockupSevice implements SharePointWebService{
             new Column('2', 'second'),
             new Column('1', 'first'),
         ];
-        return of([
-            new View('1', 'one', list, columns),
-            new View('2', 'two', list, columns),
-        ]);
+        return new Observable(observer => {
+            setTimeout(() => {
+                observer.next([
+                    new View('1', 'one', list, columns),
+                    new View('2', 'two', list, columns),
+                ]);
+                observer.complete();
+            }, 200)
+        });
     }
     getListContent(list: List): Observable<Map<string, string>[]> {
         const map1 = new Map<string, string>();
