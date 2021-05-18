@@ -22,10 +22,15 @@ export class SharePointMockupSevice implements SharePointWebService{
             new Column('2', 'second'),
             new Column('3', 'third'),
         ];
-        return of([
-            new List('1', 'one', site, columns),
-            new List('2', 'two', site, columns),
-        ]);
+        return new Observable(observer => {
+            setTimeout(() => {
+                observer.next([
+                    new List('1', 'one', site, columns),
+                    new List('2', 'two', site, columns),
+                ]);
+                observer.complete();
+            }, 200)
+        });
     }
     getViewsForList(list: List): Observable<View[]> {
         const columns = [
@@ -64,7 +69,12 @@ export class SharePointMockupSevice implements SharePointWebService{
         return of([map1, map2]);
     }
    createListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>> {
-        return of(entry);
+        return new Observable(observer => {
+            setTimeout(() => {
+                observer.next(entry);
+                observer.complete();
+            }, 150);
+        });
     }
     updateListEntry(list: List, entry: Map<string, string>): Observable<Map<string, string>> {
         return of(entry);
