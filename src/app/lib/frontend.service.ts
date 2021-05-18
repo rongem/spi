@@ -12,6 +12,7 @@ export class FrontendService implements SharePointWebService {
     selectedList = new BehaviorSubject<List | undefined>(undefined);
     selectedView = new BehaviorSubject<View | undefined>(undefined);
     appBusy = false;
+    clipBoardPasted = false;
     error?: Error | TransferError;
 
     // Gibt alle Spalten der gewählten Ansicht zurück, andernfalls alle Spalten der Liste

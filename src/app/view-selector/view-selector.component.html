@@ -1,4 +1,4 @@
-<div class="card-container">
+<div class="card-container" *ngIf="!disableSelection">
     <div class="card card-small selectable"
         [ngClass]="{'highlight-card': !selectedView}"
         (click)="selectedView = undefined">
@@ -10,4 +10,7 @@
         *ngFor="let view of availableViews">
         {{view.name}}
     </div>
+</div>
+<div *ngIf="disableSelection">
+    Ansicht: {{selectedView ?? '(ohne)'}}
 </div>

@@ -15,6 +15,9 @@ export class ViewSelectorComponent implements OnInit, OnDestroy {
   set selectedView(value) {
     this.fes.selectedView.next(value);
   }
+  get disableSelection() {
+    return this.fes.clipBoardPasted;
+  }
   availableViews: View[] = [];
   private subscription?: Subscription;
 

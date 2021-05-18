@@ -26,6 +26,7 @@ export class AppComponent {
 
   unselect() {
     this.fes.selectedList.next(undefined);
+    this.fes.clipBoardPasted = false;
   }
 
 }

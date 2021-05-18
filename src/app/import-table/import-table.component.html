@@ -14,7 +14,7 @@
             {{cell.value}}
         </td>
     </tr>
-    <tr #row>
+    <tr #row *ngIf="rows.length === 0">
         <td #cell *ngFor="let column of columnsWithoutId"
             (focus)="setPasteIndex($event)"
             (focusout)="setPasteIndex($event)"
