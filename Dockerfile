@@ -4,7 +4,7 @@ WORKDIR /usr/app
 COPY ./package*.json ./
 RUN npm install
 COPY ./ ./
-RUN npm run build:all
+RUN npm run build:prod
 
 FROM nginx
 WORKDIR /usr/app
